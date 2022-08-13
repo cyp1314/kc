@@ -1,0 +1,84 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "xxxxx",
+				"enablePullDownRefresh": false,
+				"enablePullDownRefresh": true
+			}
+		}, {
+			"path": "pages/account/account",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/help/help",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/info/info",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/book/book",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	],
+	"tabBar": {
+		"color": "#cdcdcd",
+		"selectedColor": "#1296db",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"spacing": "5px",
+		"list": [{
+			"pagePath": "pages/home/home",
+			"iconPath": "static/image/navbar/home.png",
+			"selectedIconPath": "static/image/navbar/home-active.png",
+			"text": "资源教程"
+		}, {
+			"pagePath": "pages/help/help",
+			"iconPath": "static/image/navbar/help.png",
+			"selectedIconPath": "static/image/navbar/help-active.png",
+			"text": "资源互助"
+		}, {
+			"pagePath": "pages/account/account",
+			"iconPath": "static/image/navbar/account.png",
+			"selectedIconPath": "static/image/navbar/account-active.png",
+			"text": "个人中心"
+		}]
+	},
+	"lazyCodeLoading": "requiredComponents",
+	"globalStyle": {
+		"navigationStyle": "custom",
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "资源分享",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#F8F8F8",
+		"backgroundTextStyle": "light",
+		"enablePullDownRefresh": true,
+		"onReachBottomDistance": 50
+	}
+}
