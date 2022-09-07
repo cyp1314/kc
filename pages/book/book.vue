@@ -1,7 +1,10 @@
 <template>
 	<view class="wrap content">
 		<u-navbar :is-back="true" :is-fixed="true" :border-bottom="false" title="电子书城"></u-navbar>
-		<view class="search"><u-search :placeholder="hot_search" v-model="keyword" bg-color="#f2f2f2" :animation="trye" @search="doSearch" @custom="doSearch"></u-search></view>
+		<view class="search">
+			<u-search :placeholder="hot_search" v-model="keyword" bg-color="#f2f2f2" :animation="trye"
+				@search="doSearch" @custom="doSearch"></u-search>
+		</view>
 		<!-- 		<u-button @click="clear">清空列表</u-button>
  -->
 		<u-waterfall v-model="flowList" ref="uWaterfall">
@@ -39,180 +42,183 @@
 </template>
 
 <script>
-export default {
-	data() {
-		return {
-			loadStatus: 'loadmore',
-			flowList: [],
-			list: [
-				{
-					price: 35,
-					title: '北国风光，千里冰封，万里雪飘',
-					shop: '李白杜甫白居易旗舰店',
-					image: 'https://www.javazx.com/data/attachment/forum/201905/02/011041gt47tcc7k7c4z5kt.png'
-				},
-				{
-					price: 75,
-					title: '望长城内外，惟余莽莽',
-					shop: '李白杜甫白居易旗舰店',
-					image: 'https://www.javazx.com/data/attachment/forum/201905/02/011041gt47tcc7k7c4z5kt.png'
-				},
-				{
-					price: 385,
-					title: '大河上下，顿失滔滔',
-					shop: '李白杜甫白居易旗舰店',
-					image: 'https://www.javazx.com/data/attachment/forum/201905/02/011041gt47tcc7k7c4z5kt.png'
-				},
-				{
-					price: 784,
-					title: '欲与天公试比高',
-					shop: '李白杜甫白居易旗舰店',
-					image: 'https://www.javazx.com/data/attachment/forum/201905/02/011041gt47tcc7k7c4z5kt.png'
-				},
-				{
-					price: 7891,
-					title: '须晴日，看红装素裹，分外妖娆',
-					shop: '李白杜甫白居易旗舰店',
-					image: 'https://www.javazx.com/data/attachment/forum/202201/22/235033woyopzmywvtiii6i.png'
-				},
-				{
-					price: 2341,
-					shop: '李白杜甫白居易旗舰店',
-					title: '江山如此多娇，引无数英雄竞折腰',
-					image: 'https://www.javazx.com/data/attachment/forum/202201/22/235033woyopzmywvtiii6i.png'
-				},
-				{
-					price: 661,
-					shop: '李白杜甫白居易旗舰店',
-					title: '惜秦皇汉武，略输文采',
-					image: 'https://www.javazx.com/data/attachment/forum/202201/22/235033woyopzmywvtiii6i.png'
-				},
-				{
-					price: 1654,
-					title: '唐宗宋祖，稍逊风骚',
-					shop: '李白杜甫白居易旗舰店',
-					image: 'https://www.javazx.com/data/attachment/forum/202201/22/235033woyopzmywvtiii6i.png'
-				},
-				{
-					price: 1678,
-					title: '一代天骄，成吉思汗',
-					shop: '李白杜甫白居易旗舰店',
-					image: 'https://www.javazx.com/data/attachment/forum/202003/04/021056a2fpv7zvqu7tp8f4.jpg'
-				},
-				{
-					price: 924,
-					title: '只识弯弓射大雕',
-					shop: '李白杜甫白居易旗舰店',
-					image: 'https://www.javazx.com/data/attachment/forum/202003/04/021056a2fpv7zvqu7tp8f4.jpg'
-				},
-				{
-					price: 8243,
-					title: '俱往矣，数风流人物，还看今朝',
-					shop: '李白杜甫白居易旗舰店',
-					image: 'http://pic1.sc.chinaz.com/Files/pic/pic9/202002/zzpic23343_s.jpg'
-				}
-			]
-		};
-	},
-	onLoad() {
-		this.addRandomData();
-	},
-	onReachBottom() {
-		this.loadStatus = 'loading';
-		// 模拟数据加载
-		setTimeout(() => {
+	export default {
+		data() {
+			return {
+				top: 0,
+				loadStatus: 'loadmore',
+				flowList: [],
+				list: [{
+						price: 35,
+						title: '北国风光，千里冰封，万里雪飘',
+						shop: '李白杜甫白居易旗舰店',
+						image: 'https://www.javazx.com/data/attachment/forum/201905/02/011041gt47tcc7k7c4z5kt.png'
+					},
+					{
+						price: 75,
+						title: '望长城内外，惟余莽莽',
+						shop: '李白杜甫白居易旗舰店',
+						image: 'https://www.javazx.com/data/attachment/forum/201905/02/011041gt47tcc7k7c4z5kt.png'
+					},
+					{
+						price: 385,
+						title: '大河上下，顿失滔滔',
+						shop: '李白杜甫白居易旗舰店',
+						image: 'https://www.javazx.com/data/attachment/forum/201905/02/011041gt47tcc7k7c4z5kt.png'
+					},
+					{
+						price: 784,
+						title: '欲与天公试比高',
+						shop: '李白杜甫白居易旗舰店',
+						image: 'https://www.javazx.com/data/attachment/forum/201905/02/011041gt47tcc7k7c4z5kt.png'
+					},
+					{
+						price: 7891,
+						title: '须晴日，看红装素裹，分外妖娆',
+						shop: '李白杜甫白居易旗舰店',
+						image: 'https://www.javazx.com/data/attachment/forum/202201/22/235033woyopzmywvtiii6i.png'
+					},
+					{
+						price: 2341,
+						shop: '李白杜甫白居易旗舰店',
+						title: '江山如此多娇，引无数英雄竞折腰',
+						image: 'https://www.javazx.com/data/attachment/forum/202201/22/235033woyopzmywvtiii6i.png'
+					},
+					{
+						price: 661,
+						shop: '李白杜甫白居易旗舰店',
+						title: '惜秦皇汉武，略输文采',
+						image: 'https://www.javazx.com/data/attachment/forum/202201/22/235033woyopzmywvtiii6i.png'
+					},
+					{
+						price: 1654,
+						title: '唐宗宋祖，稍逊风骚',
+						shop: '李白杜甫白居易旗舰店',
+						image: 'https://www.javazx.com/data/attachment/forum/202201/22/235033woyopzmywvtiii6i.png'
+					},
+					{
+						price: 1678,
+						title: '一代天骄，成吉思汗',
+						shop: '李白杜甫白居易旗舰店',
+						image: 'https://www.javazx.com/data/attachment/forum/202003/04/021056a2fpv7zvqu7tp8f4.jpg'
+					},
+					{
+						price: 924,
+						title: '只识弯弓射大雕',
+						shop: '李白杜甫白居易旗舰店',
+						image: 'https://www.javazx.com/data/attachment/forum/202003/04/021056a2fpv7zvqu7tp8f4.jpg'
+					},
+					{
+						price: 8243,
+						title: '俱往矣，数风流人物，还看今朝',
+						shop: '李白杜甫白居易旗舰店',
+						image: 'http://pic1.sc.chinaz.com/Files/pic/pic9/202002/zzpic23343_s.jpg'
+					}
+				]
+			};
+		},
+		onLoad() {
 			this.addRandomData();
-			this.loadStatus = 'loadmore';
-		}, 1000);
-	},
-	methods: {
-		addRandomData() {
-			for (let i = 0; i < 10; i++) {
-				let index = this.$u.random(0, this.list.length - 1);
-				// 先转成字符串再转成对象，避免数组对象引用导致数据混乱
-				let item = JSON.parse(JSON.stringify(this.list[index]));
-				item.id = this.$u.guid();
-				this.flowList.push(item);
+		},
+		onReachBottom() {
+			this.loadStatus = 'loading';
+			// 模拟数据加载
+			setTimeout(() => {
+				this.addRandomData();
+				this.loadStatus = 'loadmore';
+			}, 1000);
+		},
+		methods: {
+			addRandomData() {
+				for (let i = 0; i < 10; i++) {
+					let index = this.$u.random(0, this.list.length - 1);
+					// 先转成字符串再转成对象，避免数组对象引用导致数据混乱
+					let item = JSON.parse(JSON.stringify(this.list[index]));
+					item.id = this.$u.guid();
+					this.flowList.push(item);
+				}
+			},
+			remove(id) {
+				this.$refs.uWaterfall.remove(id);
+			},
+			clear() {
+				this.$refs.uWaterfall.clear();
 			}
-		},
-		remove(id) {
-			this.$refs.uWaterfall.remove(id);
-		},
-		clear() {
-			this.$refs.uWaterfall.clear();
 		}
-	}
-};
+	};
 </script>
 
 <style lang="scss" scoped>
-.search {
-	margin: 12px 12px;
-}
+	.search {
 
-.demo-warter {
-	border-radius: 8px;
-	margin: 5px;
-	background-color: #ffffff;
-	padding: 8px;
-	position: relative;
-}
+		margin: 12px 12px;
+		// border: 1px solid red;
+		box-shadow: 0 4px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+	}
 
-.u-close {
-	position: absolute;
-	top: 32rpx;
-	right: 32rpx;
-}
+	.demo-warter {
+		border-radius: 8px;
+		margin: 5px;
+		background-color: #ffffff;
+		padding: 0px 8px;
+		position: relative;
+	}
 
-.demo-image {
-	width: 100%;
-	border-radius: 4px;
-}
+	.u-close {
+		position: absolute;
+		top: 32rpx;
+		right: 32rpx;
+	}
 
-.demo-title {
-	font-size: 30rpx;
-	margin-top: 5px;
-	color: $u-main-color;
-}
+	.demo-image {
+		width: 100%;
+		border-radius: 4px;
+	}
 
-.demo-tag {
-	display: flex;
-	margin-top: 5px;
-}
+	.demo-title {
+		font-size: 30rpx;
+		margin-top: 5px;
+		color: $u-main-color;
+	}
 
-.demo-tag-owner {
-	background-color: $u-type-error;
-	color: #ffffff;
-	display: flex;
-	align-items: center;
-	padding: 4rpx 14rpx;
-	border-radius: 50rpx;
-	font-size: 20rpx;
-	line-height: 1;
-}
+	.demo-tag {
+		display: flex;
+		margin-top: 5px;
+	}
 
-.demo-tag-text {
-	border: 1px solid $u-type-primary;
-	color: $u-type-primary;
-	margin-left: 10px;
-	border-radius: 50rpx;
-	line-height: 1;
-	padding: 4rpx 14rpx;
-	display: flex;
-	align-items: center;
-	border-radius: 50rpx;
-	font-size: 20rpx;
-}
+	.demo-tag-owner {
+		background-color: $u-type-error;
+		color: #ffffff;
+		display: flex;
+		align-items: center;
+		padding: 4rpx 14rpx;
+		border-radius: 50rpx;
+		font-size: 20rpx;
+		line-height: 1;
+	}
 
-.demo-price {
-	font-size: 30rpx;
-	color: $u-type-error;
-	margin-top: 5px;
-}
+	.demo-tag-text {
+		border: 1px solid $u-type-primary;
+		color: $u-type-primary;
+		margin-left: 10px;
+		border-radius: 50rpx;
+		line-height: 1;
+		padding: 4rpx 14rpx;
+		display: flex;
+		align-items: center;
+		border-radius: 50rpx;
+		font-size: 20rpx;
+	}
 
-.demo-shop {
-	font-size: 22rpx;
-	color: $u-tips-color;
-	margin-top: 5px;
-}
+	.demo-price {
+		font-size: 30rpx;
+		color: $u-type-error;
+		margin-top: 5px;
+	}
+
+	.demo-shop {
+		font-size: 22rpx;
+		color: $u-tips-color;
+		margin-top: 5px;
+	}
 </style>

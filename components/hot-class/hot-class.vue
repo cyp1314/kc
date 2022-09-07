@@ -1,18 +1,25 @@
 <template>
 	<view class="business-warp">
 		<view class="title">
-			<text class="title_tip">{{ title }}</text>
-			<view class="right-more" v-if="more" @click="triggerMore">
+			<text class="title_tip">{{ content.title }}</text>
+			<view class="right-more" v-if="content.more" @click="triggerMore">
 				<text class="title_more">更多</text>
 				<u-icon name="arrow-right" size="22" color="#ccc"></u-icon>
 			</view>
 		</view>
 		<u-divider half-width="100%" border-color="#6d6d6d" :use-slot="false" margin-top="8"></u-divider>
 		<view class="session">
-			<view class="dd" v-for="(item, index) in items" :key="index" @click="detail(index)">
+			<view class="dd" v-for="(item, index) in content.items" :key="index" @click="detail(index)">
 				<view class="banner">
 					<u-image src="https://leepoo.top/img/1659458973074.png" mode="widthFix" :lazy-load="true"></u-image>
-					<view class="hot" style="width: 20px;height: 20px;"><u-icon name="zuirehotxiankuang" custom-prefix="custom-icon" size="48" color="red"></u-icon></view>
+					<view class="hot" style="width: 20px;height: 20px;">
+						<template v-if="item.type == '1'">
+							<u-icon name="zuirehotxiankuang" custom-prefix="custom-icon" size="48" color="red"></u-icon>
+						</template>
+						<template v-else-if="item.type == '2'">
+							<u-icon name="zuixinnew3" custom-prefix="custom-icon" size="48" color="red"></u-icon>
+						</template>
+					</view>
 				</view>
 				<text class="video_title">{{ item.title }}</text>
 				<view class="video_detail">
@@ -22,7 +29,7 @@
 					</view>
 					<view class="clockText">
 						<u-icon name="account-fill"></u-icon>
-						<text>{{ item.number }}人点击</text>
+						<text>{{ item.number }}人</text>
 					</view>
 				</view>
 			</view>
@@ -33,32 +40,12 @@
 <script>
 export default {
 	name: 'hot-class',
+	props:{
+		content:Object
+	},
 	data() {
 		return {
-			title: '热门课程',
-			more: true,
-			items: [
-				{
-					title: '网易-涨薪计划12周数据分析实战营',
-					time: '2022年8月4日',
-					number: 250
-				},
-				{
-					title: '多端全栈项目实战，大型商业级代驾业务全流程落地|价值1299元|更新完结',
-					time: '2022年8月4日',
-					number: 250
-				},
-				{
-					title: '网易-涨薪计划12周数据分析实战营',
-					time: '2022年8月4日',
-					number: 250
-				},
-				{
-					title: '网易-涨薪计划12周数据分析实战营',
-					time: '2022年8月4日',
-					number: 250
-				}
-			]
+			
 		};
 	},
 	methods: {
@@ -114,7 +101,7 @@ export default {
 		.dd {
 			background-color: #fff;
 			filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.2));
-			height: 200px;
+			height: 190px;
 			width: 46vw;
 			margin: 8px 0px;
 			.banner {
@@ -134,9 +121,11 @@ export default {
 			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 2;
 			overflow: hidden;
+			padding: 0px 8px;
 		}
 		.video_detail {
 			margin-top: 8px;
+			padding: 0px 8px;
 			display: flex;
 			justify-content: space-between;
 			font-size: 12px;
